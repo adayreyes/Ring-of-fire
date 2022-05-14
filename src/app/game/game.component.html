@@ -16,7 +16,7 @@
     </section>
 
     <section class="footer">
-        <app-info-card [card]="currentCard"></app-info-card>
+        <app-info-card [class.z-index]="addPlayerFocus" [card]="currentCard"></app-info-card>
         <button mat-fab color="primary" [class.highlight-button]="addPlayerFocus"  (click)="openDialog()" class="btn-add">
             <mat-icon>add</mat-icon>
           </button>
