@@ -3,7 +3,7 @@
   <p>Write the new of a player.</p>
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="name">
+    <input matInput [(ngModel)]="name" [maxlength]="10" placeholder="max 10 characters" (keyup.enter)="dialogRef.close(name)">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

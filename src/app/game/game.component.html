@@ -1,22 +1,23 @@
 <main>
+    <div [class.overlay]="addPlayerFocus"></div>
     <section class="players-section">
-        <app-player *ngFor="let player of game.players; let i = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player" [playerActive]="game.currentPlayer == i" ></app-player>
+        <app-player *ngFor="let player of game.players; let i = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player" [playerActive]="game.currentPlayer == i" [id]="i"></app-player>
     </section>
 
     <section class="cards-container">
         <div class="played-cards">
-            <img *ngFor="let card of game.playedCards let i = index" src="/assets/img/{{card}}.png"  alt="">
+            <img *ngFor="let card of game.playedCards let i = index" src="/assets/img/{{card}}.png" ng  alt="">
         </div>
         <div class="card-stack">
             <img *ngFor="let card of [0,1,2,3,4]; let i = index;" [ngStyle]="{'right.px' : i * 5}" src="/assets/img/card_cover.png" alt="">
             <img (click)="showCard()"  class="last-card" [ngStyle]="{'right.px' : 25}" src="/assets/img/card_cover.png" alt="">
-            <img (click)="showCard()" *ngIf="takeCardAnimation" [class.take-card-animation]="takeCardAnimation" class="last-card" [ngStyle]="{'right.px' : 25}" src="/assets/img/{{ currentCard }}.png" alt="">
+            <img (click)="showCard()"  *ngIf="takeCardAnimation" [class.take-card-animation]="takeCardAnimation" class="last-card" [ngStyle]="{'right.px' : 25}" src="/assets/img/{{ currentCard }}.png" alt="">
         </div>
     </section>
 
     <section class="footer">
         <app-info-card [card]="currentCard"></app-info-card>
-        <button mat-fab color="primary"  (click)="openDialog()" class="btn-add">
+        <button mat-fab color="primary" [class.highlight-button]="addPlayerFocus"  (click)="openDialog()" class="btn-add">
             <mat-icon>add</mat-icon>
           </button>
     </section>

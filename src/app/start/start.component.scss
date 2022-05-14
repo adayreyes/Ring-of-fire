@@ -1,3 +1,4 @@
+
 main{
     background-image: url("/assets/img/start.png");
     width: 100%;
@@ -10,6 +11,12 @@ main{
     
     
 }
+h1{
+    color: red;
+    
+    top: 1rem;
+    font-size: 5rem;
+}
 
 .label-container{
     background-image: url("/assets/img/label.png");
@@ -19,7 +26,9 @@ main{
     width: 700px;
     height: 300px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 3rem;
     align-items: center;
     cursor: pointer;
 
@@ -28,7 +37,7 @@ main{
     }
 
     span{
-        font-size: 6.5rem;
+        font-size: 5rem;
     }
     
     

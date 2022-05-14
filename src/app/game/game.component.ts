@@ -12,6 +12,7 @@ import { newArray } from '@angular/compiler/src/util';
 export class GameComponent implements OnInit {
   game: Game;
   takeCardAnimation = false;
+  addPlayerFocus = false;
   currentCard: string | undefined = "";
 
   constructor(public dialog: MatDialog) { 
@@ -25,16 +26,36 @@ export class GameComponent implements OnInit {
   
 
   showCard(){
-    if(!this.takeCardAnimation && this.game.stack.length > 0){
-      this.currentCard = this.game.stack.pop();
-      this.takeCardAnimation = true;
+    if(!this.takeCardAnimation && this.game.stack.length > 0 && this.game.players.length > 0){
+      this.removeCardFromStack();
       setTimeout(() => {
-        this.game.currentPlayer++;
-        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-        this.takeCardAnimation = false;
-        this.game.playedCards.push(this.currentCard)
+        this.changePlayer();
+        this.addToPlayedCards();
       }, 1000);
+    } else if(this.game.players.length == 0){
+      this.highlightButton();
     }
+  }
+  
+  addToPlayedCards(){
+    this.game.playedCards.push(this.currentCard)
+    this.takeCardAnimation = false;
+  }
+
+  removeCardFromStack(){
+    this.currentCard = this.game.stack.pop();
+    this.takeCardAnimation = true;
+  }
+
+  changePlayer(){
+    this.game.currentPlayer++;
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+    document.getElementById(this.game.currentPlayer)?.scrollIntoView();
+  }
+
+  highlightButton(){
+    this.addPlayerFocus = true
+    console.log(this.addPlayerFocus)
   }
 
   openDialog(): void {
@@ -43,6 +64,7 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe(name => {
       if(name && name.length > 0){
         this.game.players.push(name);
+        this.addPlayerFocus = false;
       }
     });
   }
