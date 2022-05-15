@@ -68,7 +68,7 @@ export class GameComponent implements OnInit {
   
   showCard(){
     this.checkEnd();
-    if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0){
+    if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0 && this.game.players.length > 0){
       this.removeCardFromStack();
       setTimeout(() => {
         this.changePlayer();
@@ -78,6 +78,8 @@ export class GameComponent implements OnInit {
     else if(!this.playerLogged){
       this.highlightButton();
     } 
+    console.log(this.game.players);
+    
   }
 
   checkEnd(){
@@ -137,7 +139,7 @@ export class GameComponent implements OnInit {
     this.restartGameValues();
     this.saveGame();
   }
-
+  
   restartGameValues(){
     this.game.players = [];
     this.game.playedCards = [];
@@ -150,5 +152,24 @@ export class GameComponent implements OnInit {
     this.game.gameOver = false;
     this.game.restarted = true;
   }
-
+  
+ /* 
+  deletePlayer(){
+    this.game.players.splice("{{name}}",1);
+    this.game.currentPlayer = 0;
+  } */
+  
+  editPlayer(id:number,name:string){
+    const dialogRef = this.addDialog.open(AddPlayerDialogComponent);
+    dialogRef.componentInstance.name = name;
+    dialogRef.afterClosed().subscribe(name => {
+      if(name && name.length > 0){
+        this.game.players.splice(id,1,name);
+        this.playerLogged = true;
+        this.saveGame();
+      }
+    });
+  }
+  
+  
 }

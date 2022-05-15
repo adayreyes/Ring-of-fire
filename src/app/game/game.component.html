@@ -1,7 +1,7 @@
 <main>
     <div [class.overlay]="addPlayerFocus"></div>
     <section class="players-section">
-        <app-player *ngFor="let player of game.players; let i = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player" [playerActive]="game.currentPlayer == i" [id]="i"></app-player>
+        <app-player *ngFor="let player of game.players; let i = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player"  [playerActive]="game.currentPlayer == i" (click)="editPlayer(i,player)" [id]="i"></app-player>
     </section>
 
     <section class="cards-container">
