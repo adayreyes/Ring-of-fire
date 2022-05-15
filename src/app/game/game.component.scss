@@ -35,10 +35,14 @@ main{
         position: absolute;
         top: 0;
         left: 0;
+        transform: rotate(-10deg);
     }
 }
 .z-index{
     z-index: 3;
+}
+app-player{
+    z-index: 1;
 }
 .overlay{
     width: 100%;
@@ -129,7 +133,7 @@ main{
         transform: scale(1.2) translateY(-10px);
     }
     to{
-        transform: translateY(-400px)  rotate(-10deg);
+        transform: translateY(-250px)  rotate(-10deg);
     }
 }
 

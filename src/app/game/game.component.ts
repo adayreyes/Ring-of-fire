@@ -47,7 +47,7 @@ export class GameComponent implements OnInit {
 
 
   showCard(){
-    if(this.playerLogged && !this.game.takeCardAnimation){
+    if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0){
       this.removeCardFromStack();
       setTimeout(() => {
         this.changePlayer();
