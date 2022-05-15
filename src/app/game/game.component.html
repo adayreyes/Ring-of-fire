@@ -17,8 +17,13 @@
 
     <section class="footer">
         <app-info-card [class.z-index]="addPlayerFocus" [card]="game.currentCard"></app-info-card>
-        <button mat-fab color="primary" [class.highlight-button]="addPlayerFocus"  (click)="openDialog()" class="btn-add">
-            <mat-icon>add</mat-icon>
-          </button>
+        <div class="buttons-container">
+            <button mat-fab color="primary" [class.highlight-button]="addPlayerFocus"  (click)="openAddPlayerDialog()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-fab color="primary" (click)="openShareDialog()">
+                <mat-icon>share</mat-icon>
+              </button>
+        </div>
     </section>
 </main>

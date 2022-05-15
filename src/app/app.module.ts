@@ -11,11 +11,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { AddPlayerDialogComponent } from './add-player-dialog/add-player-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ClipboardModule } from 'ngx-clipboard';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { environment } from '../environments/environment';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirebaseApp, initializeApp } 
 from '@angular/fire/app';
@@ -31,6 +33,7 @@ import {
   ScreenTrackingService,
   UserTrackingService
 } from '@angular/fire/analytics';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 
 
 
@@ -43,12 +46,15 @@ import {
     PlayerComponent,
     AddPlayerDialogComponent,
     InfoCardComponent,
+    ShareDialogComponent,
   ],
   imports: [
     BrowserModule,
+    ClipboardModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatTooltipModule,
     MatCardModule,
     MatInputModule,
     FormsModule,

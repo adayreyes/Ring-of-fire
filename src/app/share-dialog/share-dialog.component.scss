@@ -1,0 +1,21 @@
+span{
+    background-color: rgba(128, 128, 128, 0.247);
+}
+.link-container{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+
+    mat-icon{
+        cursor: pointer;
+    }
+    button{
+        background-color: white;
+        border: none;
+        transition: all 100ms ease;
+
+        &:hover{
+            background-color: rgba(128, 128, 128, 0.11);
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { Firestore, collectionData,addDoc, collection, doc, docData,setDoc, upda
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { query } from '@firebase/firestore';
+import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
 
 @Component({
   selector: 'app-game',
@@ -20,7 +21,7 @@ export class GameComponent implements OnInit {
   gameId:string = "";
   playerLogged = false;
 
-  constructor(public dialog: MatDialog, private firestore: Firestore, public route: ActivatedRoute) { 
+  constructor(public addDialog: MatDialog, public shareDialog: MatDialog, private firestore: Firestore, public route: ActivatedRoute) { 
     this.game = new Game;
   }
   
@@ -82,9 +83,9 @@ export class GameComponent implements OnInit {
     console.log(this.addPlayerFocus)
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddPlayerDialogComponent);
-
+  openAddPlayerDialog(): void {
+    const dialogRef = this.addDialog.open(AddPlayerDialogComponent);
+    
     dialogRef.afterClosed().subscribe(name => {
       if(name && name.length > 0){
         this.game.players.push(name);
@@ -93,6 +94,11 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }
     });
+  }
+  
+  openShareDialog(): void{
+    const dialogRef = this.shareDialog.open(ShareDialogComponent);
+    
   }
 
 

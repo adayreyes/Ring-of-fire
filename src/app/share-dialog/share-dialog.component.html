@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Play with friends!</h1>
+<div mat-dialog-content>
+    <p>Copy the link below and share it with your friends</p>
+    <div class="link-container">
+        <span>{{ path }}</span>
+        <button (click)="copyLink()"
+        matTooltip="Click to copy"
+        [matTooltipPosition]="'above'"
+        matTooltipHideDelay="100"> <mat-icon>content_copy</mat-icon></button>
+    </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
