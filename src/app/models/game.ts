@@ -3,6 +3,9 @@ export class Game{
     public stack: string[] = [];
     public  playedCards: string[] | any = [];
     public currentPlayer: any = 0;
+    public takeCardAnimation = false;
+    public currentCard: string | undefined = "";
+    
 
     constructor(){
         this.addCardsToGame();
@@ -24,10 +27,12 @@ export class Game{
 
       public toJson(){
         return {
-          players:this.players,
-          stack:this.stack,
-          playedCards:this.playedCards,
-          currentPlayer:this.currentPlayer
+          players: this.players,
+          stack: this.stack,
+          playedCards: this.playedCards,
+          currentPlayer: this.currentPlayer,
+          takeCardAnimation: this.takeCardAnimation,
+          currentCard: this.currentCard
         }
       }
 

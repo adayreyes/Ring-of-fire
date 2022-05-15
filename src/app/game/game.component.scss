@@ -19,7 +19,7 @@ main{
     img{
         width: 100%;
         position: absolute;
-        top: -20px;
+        top: -40px;
     }
 }
 
@@ -133,11 +133,6 @@ main{
     }
 }
 
-@media(max-width:1000px){
-    .cards-container{
-        left: 20vw;
-    }
-}
 
 @media(max-width:700px){
     .footer{
@@ -147,10 +142,13 @@ main{
         left: 0;
         justify-content: space-between;
         gap: unset;
-
+        
     }
     .players-section{
         max-height: 160px;
+    }
+    .cards-container{
+        left: 20vw;
     }
 }
 
@@ -164,7 +162,10 @@ main{
         max-height: 80px;
     }
     .played-cards img{
-        top: 50px;
+        top: 0;
+    }
+    .card-stack img{
+        top: -110px;
     }
 }
 

@@ -1,8 +1,7 @@
 .card{
-    width: 40vw;
+    width: 50vw;
     min-width: 300px;
-    max-height: 50px;
-    overflow-y: auto;
+    
 }
 
 @media(max-width:700px){
@@ -10,11 +9,4 @@
         min-width: 220px;
         width: 80%;
     }
-}
-@media(max-height:800px){
-    .card{
-        max-height: 30px;
-
-    }
-
 }

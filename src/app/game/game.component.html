@@ -11,12 +11,12 @@
         <div class="card-stack">
             <img *ngFor="let card of [0,1,2,3,4]; let i = index;" [ngStyle]="{'right.px' : i * 5}" src="assets/img/card_cover.png" alt="">
             <img (click)="showCard()"  class="last-card" [ngStyle]="{'right.px' : 25}" src="assets/img/card_cover.png" alt="">
-            <img (click)="showCard()"  *ngIf="takeCardAnimation" [class.take-card-animation]="takeCardAnimation" class="last-card" [ngStyle]="{'right.px' : 25}" src="assets/img/{{ currentCard }}.png" alt="">
+            <img (click)="showCard()"  *ngIf="game.takeCardAnimation" [class.take-card-animation]="game.takeCardAnimation" class="last-card" [ngStyle]="{'right.px' : 25}" src="assets/img/{{ game.currentCard }}.png" alt="">
         </div>
     </section>
 
     <section class="footer">
-        <app-info-card [class.z-index]="addPlayerFocus" [card]="currentCard"></app-info-card>
+        <app-info-card [class.z-index]="addPlayerFocus" [card]="game.currentCard"></app-info-card>
         <button mat-fab color="primary" [class.highlight-button]="addPlayerFocus"  (click)="openDialog()" class="btn-add">
             <mat-icon>add</mat-icon>
           </button>
