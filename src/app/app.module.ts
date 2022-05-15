@@ -47,6 +47,7 @@ import { ShareDialogComponent } from './share-dialog/share-dialog.component';
     AddPlayerDialogComponent,
     InfoCardComponent,
     ShareDialogComponent,
+   
   ],
   imports: [
     BrowserModule,

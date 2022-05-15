@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AddPlayerDialogComponent } from '../add-player-dialog/add-player-dialog.component';
 import { Game } from '../models/game';
 import {MatDialog} from '@angular/material/dialog';
-import { newArray } from '@angular/compiler/src/util';
 import { Firestore, collectionData,addDoc, collection, doc, docData,setDoc, updateDoc } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { query } from '@firebase/firestore';
 import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
 
 @Component({
@@ -14,9 +11,11 @@ import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
 
+export class GameComponent implements OnInit {
+  
   game: Game;
+  restarted:boolean = false;
   addPlayerFocus:boolean = false;
   gameId:string = "";
   playerLogged = false;
@@ -26,36 +25,72 @@ export class GameComponent implements OnInit {
   }
   
   ngOnInit(): void {
+
+    this.getGame();
+    let interval = setInterval(()=>{
+      this.checkRestarted();
+      this.checkGameOver();
+    },200)
+    
+  }
+  
+  checkGameOver(){
+    if(this.game.gameOver){
+      this.game.restarted = false;
+      this.restarted = false;
+    }
+  }
+
+  getGame(){
     this.route.params.subscribe((params:any)=>{
       this.gameId = params.id;
       docData(doc(this.firestore,"games",this.gameId)).subscribe((game:any)=>{
-      this.game.players = game.players;
+        this.setGameValues(game);
+    })
+    })     
+  }
+
+  setGameValues(game:any){
+    this.game.players = game.players;
       this.game.playedCards = game.playedCards;
       this.game.currentPlayer = game.currentPlayer;
       this.game.stack = game.stack;
       this.game.currentCard = game.currentCard;
       this.game.takeCardAnimation = game.takeCardAnimation;
-    })
-    })    
+      this.game.gameOver = game.gameOver;
+      this.game.restarted = game.restarted;
   }
   
-  
-  saveGame(){
+  async saveGame(){
     const gameRef = doc(this.firestore,"games",this.gameId);
-    updateDoc(gameRef,this.game.toJson());
+    await updateDoc(gameRef,this.game.toJson());
   }
   
-
-
   showCard(){
+    this.checkEnd();
     if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0){
       this.removeCardFromStack();
       setTimeout(() => {
         this.changePlayer();
         this.addToPlayedCards();
       }, 1000);
-    } else if(!this.playerLogged){
+    }
+    else if(!this.playerLogged){
       this.highlightButton();
+    } 
+  }
+
+  checkEnd(){
+    if(this.game.stack.length == 0){
+      this.game.gameOver = true;
+      this.saveGame()
+    }
+  }
+ 
+  checkRestarted(){
+    if(this.game.restarted === true && this.restarted === false){
+      this.playerLogged = false;
+      this.restarted = true
     }
   }
   
@@ -80,12 +115,10 @@ export class GameComponent implements OnInit {
   
   highlightButton(){
     this.addPlayerFocus = true
-    console.log(this.addPlayerFocus)
   }
 
   openAddPlayerDialog(): void {
     const dialogRef = this.addDialog.open(AddPlayerDialogComponent);
-    
     dialogRef.afterClosed().subscribe(name => {
       if(name && name.length > 0){
         this.game.players.push(name);
@@ -98,8 +131,24 @@ export class GameComponent implements OnInit {
   
   openShareDialog(): void{
     const dialogRef = this.shareDialog.open(ShareDialogComponent);
-    
+  }
+  
+  startNewGame(){
+    this.restartGameValues();
+    this.saveGame();
   }
 
+  restartGameValues(){
+    this.game.players = [];
+    this.game.playedCards = [];
+    this.game.stack = [];
+    this.playerLogged = false;
+    this.game.takeCardAnimation = false;
+    this.game.currentCard = "";
+    this.game.currentPlayer = 0;
+    this.game.addCardsToGame();
+    this.game.gameOver = false;
+    this.game.restarted = true;
+  }
 
 }

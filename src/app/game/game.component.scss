@@ -130,6 +130,49 @@ app-player{
     bottom: 5vh;
     left: 25vw;
 }
+.game-over-container{
+    background-color: rgba(0, 0, 0, 0.562);
+    color: white;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    flex-wrap: wrap;
+
+    .game-over-buttons-container{
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+
+        .restart-container{
+            transition: all 125ms ease;
+            cursor: pointer;
+            
+            &:hover{
+                color: green;
+            }
+        }
+        .close-container{
+            transition: all 125ms ease;
+            cursor: pointer;
+
+            &:hover{
+                color: red;
+            }
+        }
+    }
+
+    
+}
 
 
 

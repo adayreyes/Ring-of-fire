@@ -1,10 +1,12 @@
 export class Game{
     public players: string[] = [];
     public stack: string[] = [];
-    public  playedCards: string[] | any = [];
+    public playedCards: string[] | any = [];
     public currentPlayer: any = 0;
     public takeCardAnimation = false;
     public currentCard: string | undefined = "";
+    public gameOver:boolean = false;
+    public restarted:boolean = false;
     
 
     constructor(){
@@ -32,7 +34,9 @@ export class Game{
           playedCards: this.playedCards,
           currentPlayer: this.currentPlayer,
           takeCardAnimation: this.takeCardAnimation,
-          currentCard: this.currentCard
+          currentCard: this.currentCard,
+          gameOver:this.gameOver,
+          restarted:this.restarted
         }
       }
 

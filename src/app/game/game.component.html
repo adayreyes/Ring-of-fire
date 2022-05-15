@@ -26,4 +26,17 @@
               </button>
         </div>
     </section>
+    <div *ngIf="game.gameOver" class="game-over-container">
+        <div class="game-over-buttons-container">
+            <div (click)="startNewGame()" class="restart-container">
+                <mat-icon>restart_alt</mat-icon>
+                <p>Restart</p>
+            </div>
+            <div class="close-container">
+                <mat-icon>close</mat-icon>
+                <p>End game</p>
+            </div>
+        </div>
+
+    </div>
 </main>
