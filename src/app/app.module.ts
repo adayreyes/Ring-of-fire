@@ -34,6 +34,7 @@ import {
   UserTrackingService
 } from '@angular/fire/analytics';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
+import { EditPlayerDialogComponent } from './edit-player-dialog/edit-player-dialog.component';
 
 
 
@@ -47,6 +48,7 @@ import { ShareDialogComponent } from './share-dialog/share-dialog.component';
     AddPlayerDialogComponent,
     InfoCardComponent,
     ShareDialogComponent,
+    EditPlayerDialogComponent,
    
   ],
   imports: [

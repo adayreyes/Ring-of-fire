@@ -1,7 +1,7 @@
 <main>
     <div [class.overlay]="addPlayerFocus"></div>
     <section class="players-section">
-        <app-player *ngFor="let player of game.players; let i = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player"  [playerActive]="game.currentPlayer == i" (click)="editPlayer(i,player)" [id]="i"></app-player>
+        <app-player *ngFor="let player of game.players; let i = index; let img of images; let j = index" class="player-position" [ngStyle]="{'top.px': 120 * i}" [name]="player" [img]="img" (click)="deletePlayer(i)" [playerActive]="game.currentPlayer == i"></app-player>
     </section>
 
     <section class="cards-container">
@@ -37,6 +37,5 @@
                 <p>End game</p>
             </div>
         </div>
-
     </div>
 </main>

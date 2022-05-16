@@ -9,13 +9,27 @@ import {MatDialogRef} from '@angular/material/dialog';
 export class AddPlayerDialogComponent implements OnInit {
 
   name:string = "";
+  img:string="";
+
+  images:Array<string> =[
+    "profil1.png",
+    "profil2.png",
+    "profil3.png",
+    "profil4.png"
+    
+  ]
  
   constructor(public dialogRef: MatDialogRef<AddPlayerDialogComponent>) { }
 
   ngOnInit(): void {
   }
 
+
   onNoClick(): void {
     this.dialogRef.close();
+  } 
+
+  selectImage(img:string){
+    this.img = img;
   }
 }

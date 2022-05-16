@@ -10,7 +10,9 @@ import {MatDialog} from '@angular/material/dialog';
 export class PlayerComponent implements OnInit {
 
   @Input() name:string | any; 
+  @Input() img:string | any; 
   @Input() playerActive:boolean = false; 
+
   
 
   constructor(public addDialog: MatDialog,) { }
@@ -18,6 +20,6 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
+  
 
 }

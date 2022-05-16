@@ -1,5 +1,7 @@
 <div [class.player-active]="playerActive" class="player-box">
-    <img src="assets/img/profile.png" alt="">
-    <span>{{name}}</span>
-    
+    <div class="player-info">
+        <img src="assets/img/{{ img }}" alt="">
+        <span>{{name}}</span>
+    </div>
+    <mat-icon>delete</mat-icon>
 </div>

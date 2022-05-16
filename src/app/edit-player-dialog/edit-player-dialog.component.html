@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add player</h1>
+<!-- <h1 mat-dialog-title>Add player</h1>
 <div mat-dialog-content>
   <p>Write the name of a player.</p>
   <mat-form-field appearance="fill">
@@ -6,12 +6,11 @@
     <input matInput [(ngModel)]="name" [maxlength]="10" placeholder="max 10 characters" (keyup.enter)="dialogRef.close(name)">
   </mat-form-field>
   <mat-form-field class="img-container">
-    <a *ngFor="let img of images" class="imageAnchor" href="#">
-      <img src="../../assets/img/{{ img }}" alt="" (click)="selectImage(img)">
-  </a>
+    <img *ngFor="let img of images" src="../../assets/img/{{ img }}" alt="" (click)="selectImage(img)">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name">Ok</button>
 </div>
+ -->

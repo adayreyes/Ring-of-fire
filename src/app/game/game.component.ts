@@ -19,6 +19,13 @@ export class GameComponent implements OnInit {
   addPlayerFocus:boolean = false;
   gameId:string = "";
   playerLogged = false;
+  images:Array<string> =[
+    "profil1.png",
+    "profil2.png",
+    "profil3.png",
+    "profil4.png"
+    
+  ]
 
   constructor(public addDialog: MatDialog, public shareDialog: MatDialog, private firestore: Firestore, public route: ActivatedRoute) { 
     this.game = new Game;
@@ -153,23 +160,9 @@ export class GameComponent implements OnInit {
     this.game.restarted = true;
   }
   
- /* 
-  deletePlayer(){
-    this.game.players.splice("{{name}}",1);
-    this.game.currentPlayer = 0;
-  } */
   
-  editPlayer(id:number,name:string){
-    const dialogRef = this.addDialog.open(AddPlayerDialogComponent);
-    dialogRef.componentInstance.name = name;
-    dialogRef.afterClosed().subscribe(name => {
-      if(name && name.length > 0){
-        this.game.players.splice(id,1,name);
-        this.playerLogged = true;
-        this.saveGame();
-      }
-    });
+  deletePlayer(index:number){
+    this.game.players.splice(index,1);
+    this.saveGame();
   }
-  
-  
 }
