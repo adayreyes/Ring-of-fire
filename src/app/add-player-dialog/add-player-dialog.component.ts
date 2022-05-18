@@ -11,6 +11,10 @@ export class AddPlayerDialogComponent implements OnInit {
   name:string = "";
   img:string="";
 
+  /**
+   * Array with all profile images
+   * @type {Array}
+   */
   allProfileImages:Array<string> =[
     "profile1.png",
     "profile2.png",
@@ -24,12 +28,11 @@ export class AddPlayerDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Closes the dialog
+   */
   onNoClick(): void {
     this.dialogRef.close();
   } 
 
-  selectImage(img:string){
-    this.img = img;
-  }
 }

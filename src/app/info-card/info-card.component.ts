@@ -8,7 +8,9 @@ import { Component,Input, OnChanges, OnInit } from '@angular/core';
 export class InfoCardComponent implements OnInit, OnChanges {
 
   constructor() { }
-
+  /**
+   * Array with all challenge cards
+   */
   cardAction= [
     { title: 'Waterfall', description: 'Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.' },
     { title: 'You', description: 'You decide who drinks' },
@@ -31,6 +33,9 @@ export class InfoCardComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
   
+  /**
+   * Chooses a challenge card in accord with the number of the card from the stack
+   */
   ngOnChanges() :void {
     if(this.card){
       let cardNumber: string | any = this.card.split("_")[1];

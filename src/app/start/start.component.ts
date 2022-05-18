@@ -15,7 +15,9 @@ export class StartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Creates and loads the a new game
+   */
   startGame(){
     let game = new Game;
     addDoc(collection(this.firestore,"games"),game.toJson())

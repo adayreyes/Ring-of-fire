@@ -7,7 +7,11 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-player-dialog.component.scss']
 })
 export class EditPlayerDialogComponent implements OnInit {
-
+  
+  /**
+   * Array with all profile images
+   * @type {Array}
+   */
   allProfileImages:Array<string> =[
     "profile1.png",
     "profile2.png",

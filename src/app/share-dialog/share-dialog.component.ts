@@ -20,7 +20,9 @@ export class ShareDialogComponent implements OnInit {
   ngOnInit(): void {
     
 }
-
+/**
+ * Copy the link of the current route
+ */
 copyLink(){
   this.clipboardApi.copyFromContent(this.path)
 }
