@@ -11,11 +11,11 @@ export class AddPlayerDialogComponent implements OnInit {
   name:string = "";
   img:string="";
 
-  images:Array<string> =[
-    "profil1.png",
-    "profil2.png",
-    "profil3.png",
-    "profil4.png"
+  allProfileImages:Array<string> =[
+    "profile1.png",
+    "profile2.png",
+    "profile3.png",
+    "profile4.png"
     
   ]
  

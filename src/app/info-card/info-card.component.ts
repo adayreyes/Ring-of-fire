@@ -37,7 +37,6 @@ export class InfoCardComponent implements OnInit, OnChanges {
       this.title = this.cardAction[cardNumber - 1].title;
       this.description = this.cardAction[cardNumber - 1].description;
     }
-
   }
 
 }

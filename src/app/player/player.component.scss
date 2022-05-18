@@ -13,18 +13,13 @@
     
     &:hover{
         filter: brightness(1.2);
-        background-color: rgba(255, 0, 0, 0.705);
-
-        mat-icon{
-            display: inline;
-        }
         
     }
 
     img{
         width: 60px;
+        height: 60%;
         border-radius: 100%;
-
     }
     
     span{
@@ -41,10 +36,5 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-}
-
-mat-icon{
-    display: none;
-    color: white;
 }
 

@@ -3,6 +3,7 @@ export class Game{
     public stack: string[] = [];
     public playedCards: string[] | any = [];
     public currentPlayer: any = 0;
+    public playerImages: string[] = []
     public takeCardAnimation = false;
     public currentCard: string | undefined = "";
     public gameOver:boolean = false;
@@ -33,6 +34,7 @@ export class Game{
           stack: this.stack,
           playedCards: this.playedCards,
           currentPlayer: this.currentPlayer,
+          playerImages: this.playerImages,
           takeCardAnimation: this.takeCardAnimation,
           currentCard: this.currentCard,
           gameOver:this.gameOver,

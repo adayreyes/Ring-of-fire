@@ -5,6 +5,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { Firestore, collectionData,addDoc, collection, doc, docData,setDoc, updateDoc } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
+import { EditPlayerDialogComponent } from '../edit-player-dialog/edit-player-dialog.component';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-game',
@@ -24,7 +26,6 @@ export class GameComponent implements OnInit {
     "profil2.png",
     "profil3.png",
     "profil4.png"
-    
   ]
 
   constructor(public addDialog: MatDialog, public shareDialog: MatDialog, private firestore: Firestore, public route: ActivatedRoute) { 
@@ -32,13 +33,11 @@ export class GameComponent implements OnInit {
   }
   
   ngOnInit(): void {
-
     this.getGame();
     let interval = setInterval(()=>{
       this.checkRestarted();
       this.checkGameOver();
     },200)
-    
   }
   
   checkGameOver(){
@@ -60,6 +59,7 @@ export class GameComponent implements OnInit {
   setGameValues(game:any){
     this.game.players = game.players;
       this.game.playedCards = game.playedCards;
+      this.game.playerImages = game.playerImages;
       this.game.currentPlayer = game.currentPlayer;
       this.game.stack = game.stack;
       this.game.currentCard = game.currentCard;
@@ -80,22 +80,21 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.changePlayer();
         this.addToPlayedCards();
+        this.saveGame();
       }, 1000);
     }
     else if(!this.playerLogged){
       this.highlightButton();
-    } 
-    console.log(this.game.players);
-    
+    }
   }
-
+  
   checkEnd(){
     if(this.game.stack.length == 0){
       this.game.gameOver = true;
       this.saveGame()
     }
   }
- 
+  
   checkRestarted(){
     if(this.game.restarted === true && this.restarted === false){
       this.playerLogged = false;
@@ -106,35 +105,50 @@ export class GameComponent implements OnInit {
   addToPlayedCards(){
     this.game.playedCards.push(this.game.currentCard)
     this.game.takeCardAnimation = false;
-    this.saveGame();
   }
   
   removeCardFromStack(){
     this.game.currentCard = this.game.stack.pop();
     this.game.takeCardAnimation = true;
     this.saveGame();
+    
   }
   
   changePlayer(){
     this.game.currentPlayer++;
     this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
     document.getElementById(this.game.currentPlayer)?.scrollIntoView();
-    this.saveGame();
+    
   }
   
   highlightButton(){
     this.addPlayerFocus = true
   }
 
-  openAddPlayerDialog(): void {
+  addPlayer(): void {
     const dialogRef = this.addDialog.open(AddPlayerDialogComponent);
     dialogRef.afterClosed().subscribe(name => {
       if(name && name.length > 0){
         this.game.players.push(name);
+        this.game.playerImages.push("profile1.png");
         this.playerLogged = true;
         this.addPlayerFocus = false;
         this.saveGame();
       }
+    });
+  }
+
+  editPlayer(player:number){
+    const dialogRef = this.addDialog.open(EditPlayerDialogComponent);
+    dialogRef.afterClosed().subscribe(change => {
+      if(change === "DELETE"){
+        this.game.players.splice(player,1);
+        this.game.playerImages.splice(player,1);
+      } 
+      else if(change){
+        this.game.playerImages.splice(player,1,change);
+      }
+      this.saveGame();
     });
   }
   
@@ -151,6 +165,7 @@ export class GameComponent implements OnInit {
     this.game.players = [];
     this.game.playedCards = [];
     this.game.stack = [];
+    this.game.playerImages = [];
     this.playerLogged = false;
     this.game.takeCardAnimation = false;
     this.game.currentCard = "";
@@ -159,7 +174,6 @@ export class GameComponent implements OnInit {
     this.game.gameOver = false;
     this.game.restarted = true;
   }
-  
   
   deletePlayer(index:number){
     this.game.players.splice(index,1);

@@ -5,11 +5,6 @@
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="name" [maxlength]="10" placeholder="max 10 characters" (keyup.enter)="dialogRef.close(name)">
   </mat-form-field>
-  <mat-form-field class="img-container">
-    <a *ngFor="let img of images" class="imageAnchor" href="#">
-      <img src="../../assets/img/{{ img }}" alt="" (click)="selectImage(img)">
-  </a>
-  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

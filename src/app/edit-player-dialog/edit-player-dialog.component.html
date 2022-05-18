@@ -1,16 +1,6 @@
-<!-- <h1 mat-dialog-title>Add player</h1>
-<div mat-dialog-content>
-  <p>Write the name of a player.</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="name" [maxlength]="10" placeholder="max 10 characters" (keyup.enter)="dialogRef.close(name)">
-  </mat-form-field>
-  <mat-form-field class="img-container">
-    <img *ngFor="let img of images" src="../../assets/img/{{ img }}" alt="" (click)="selectImage(img)">
-  </mat-form-field>
-</div>
+<h1 mat-dialog-title>Edit player</h1>
+<img *ngFor="let img of allProfileImages" src="../../assets/img/{{ img }}" alt="" [mat-dialog-close]="img">
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name">Ok</button>
+    <button mat-button (click)="dialogRef.close()">No Thanks</button>
+    <button mat-button color="warn" [mat-dialog-close]="'DELETE'">Delete</button>
 </div>
- -->
