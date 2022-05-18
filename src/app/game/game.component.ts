@@ -111,7 +111,7 @@ export class GameComponent implements OnInit {
    */
   showCard(){
     this.checkEnd();
-    if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0 && this.game.players.length > 0){
+    if(this.playerLogged && !this.game.takeCardAnimation && this.game.stack.length > 0 && this.game.players.length > 1){
       this.removeCardFromStack();
       setTimeout(() => {
         this.changePlayer();
@@ -119,7 +119,7 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }, 1000);
     }
-    else if(!this.playerLogged){
+    else if(!this.playerLogged || this.game.players.length < 2){
       this.highlightButton();
     }
   }
